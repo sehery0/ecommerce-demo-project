@@ -1,6 +1,8 @@
 package com.etiya.ecommercedemo3.business.concretes;
 
 import com.etiya.ecommercedemo3.business.abstracts.CategoryService;
+import com.etiya.ecommercedemo3.business.dtos.request.category.AddCategoryRequest;
+import com.etiya.ecommercedemo3.business.dtos.response.category.AddCategoryResponse;
 import com.etiya.ecommercedemo3.entities.concretes.Category;
 import com.etiya.ecommercedemo3.repository.abstracts.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -20,6 +22,16 @@ public class CategoryManager implements CategoryService {
     @Override
     public Category getById(int id) {
         return categoryRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public AddCategoryResponse addCategory(AddCategoryRequest addCategoryRequest) {
+        Category category = new Category();
+        category.setName(addCategoryRequest.getName());
+        Category savedCategory = categoryRepository.save(category);
+        AddCategoryResponse response =
+                new AddCategoryResponse(savedCategory.getId(), savedCategory.getName());
+        return response;
     }
 
 }
