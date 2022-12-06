@@ -41,7 +41,7 @@ public class ProductManager implements ProductService {
         product.setStock(addProductRequest.getStock());
         product.setUnit_price(addProductRequest.getUnit_price());
         Product savedProduct = productRepository.save(product);
-        AddProductResponse response = new AddProductResponse(savedProduct.getId(), savedProduct.getName(), savedProduct.getUnit_price(), savedProduct.getStock());
+        AddProductResponse response = new AddProductResponse(savedProduct.getProductId(), savedProduct.getName(), savedProduct.getUnit_price(), savedProduct.getStock());
         return response;
     }
 

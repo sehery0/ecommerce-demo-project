@@ -4,12 +4,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 public class AddProductRequest {
+    @NotNull
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String name;
+    @Min(value = 1)
     private double unit_price;
+    @Min(value = 0)
     private int stock;
 }

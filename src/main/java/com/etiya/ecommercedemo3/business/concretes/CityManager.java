@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CityManager implements CityService {
     private CityRepository cityRepository;
+
+    @Override
+    public City getById(int id) {
+        return cityRepository.findById(id).orElseThrow();
+    }
+
     @Override
     public AddCityResponse addCity(AddCityRequest addCityRequest) {
         City city = new City();

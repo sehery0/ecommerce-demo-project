@@ -2,13 +2,16 @@ package com.etiya.ecommercedemo3.api.controllers;
 
 import com.etiya.ecommercedemo3.business.abstracts.ProductService;
 import com.etiya.ecommercedemo3.business.dtos.request.product.AddProductRequest;
+import com.etiya.ecommercedemo3.business.dtos.response.paymentType.AddPaymentTypeResponse;
 import com.etiya.ecommercedemo3.business.dtos.response.product.AddProductResponse;
 import com.etiya.ecommercedemo3.entities.concretes.Product;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,9 +45,9 @@ public class ProductsController {
         return productService.getByName(name);
     }
     @PostMapping("/add")
-    public ResponseEntity<AddProductResponse> addProduct(@RequestBody AddProductRequest addProductRequest)
+    public ResponseEntity<AddProductResponse> addProduct(@RequestBody @Valid AddProductRequest addProductRequest)
     {
-        return  new ResponseEntity(productService.addProduct(addProductRequest), HttpStatus.CREATED);
+        return  new ResponseEntity<AddProductResponse>(productService.addProduct(addProductRequest), HttpStatus.CREATED);
     }
 
 

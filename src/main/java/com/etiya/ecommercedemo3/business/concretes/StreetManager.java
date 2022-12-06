@@ -14,6 +14,11 @@ public class StreetManager implements StreetService {
     private StreetRepository streetRepository;
 
     @Override
+    public Street getById(int id) {
+        return streetRepository.findById(id).orElseThrow();
+    }
+
+    @Override
     public AddStreetResponse addStreet(AddStreetRequest addStreetRequest) {
         Street street = new Street();
         street.setName(addStreetRequest.getName());

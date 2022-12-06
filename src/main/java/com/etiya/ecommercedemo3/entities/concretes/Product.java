@@ -1,6 +1,6 @@
 package com.etiya.ecommercedemo3.entities.concretes;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class Product {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int productId;
 
     @Column(name = "name")
     private String name;
@@ -30,4 +30,8 @@ public class Product {
 
     @Column(name = "stock")
     private int stock;
+
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference
+    List<ProductCategory> productCategories;
 }

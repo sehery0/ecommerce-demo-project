@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CountryManager implements CountryService {
     private CountryRepository countryRepository;
+
+    @Override
+    public Country getById(int id) {
+        return countryRepository.findById(id).orElseThrow();
+    }
+
     @Override
     public AddCountryResponse addCountry(AddCountryRequest addCountryRequest) {
         Country country = new Country();
