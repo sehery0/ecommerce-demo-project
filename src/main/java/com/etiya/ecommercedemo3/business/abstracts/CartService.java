@@ -1,0 +1,10 @@
+package com.etiya.ecommercedemo3.business.abstracts;
+
+import com.etiya.ecommercedemo3.business.dtos.request.cart.AddCartRequest;
+import com.etiya.ecommercedemo3.business.dtos.request.country.AddCountryRequest;
+import com.etiya.ecommercedemo3.business.dtos.response.cart.AddCartResponse;
+import com.etiya.ecommercedemo3.business.dtos.response.country.AddCountryResponse;
+
+public interface CartService {
+    AddCartResponse addCart(AddCartRequest addCartRequest);
+}
