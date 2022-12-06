@@ -7,5 +7,5 @@ import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProduc
 import com.etiya.ecommercedemo3.entities.concretes.ProductCategory;
 
 public interface ProductCategoryService {
-    ProductCategory addProductCategory(AddProductCategoryRequest addProductCategoryRequest);
+    AddProductCategoryResponse addProductCategory(AddProductCategoryRequest addProductCategoryRequest);
 }

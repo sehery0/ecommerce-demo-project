@@ -31,7 +31,7 @@ public class CategoryManager implements CategoryService {
         categoryCanNotExistWithSameName(addCategoryRequest.getName());
         Category savedCategory = categoryRepository.save(category);
         AddCategoryResponse response =
-                new AddCategoryResponse(savedCategory.getCategoryId(), savedCategory.getName());
+                new AddCategoryResponse(savedCategory.getId(), savedCategory.getName());
         return response;
     }
 

@@ -22,4 +22,9 @@ public class CustomerManager implements CustomerService {
         AddCustomerResponse response=new AddCustomerResponse(savedCustomer.getId(),savedCustomer.getCustomerNumber(),savedCustomer.getCart());
         return  response;
     }
+
+    @Override
+    public Customer getById(int id) {
+        return customerRepository.findById(id).orElseThrow();
+    }
 }

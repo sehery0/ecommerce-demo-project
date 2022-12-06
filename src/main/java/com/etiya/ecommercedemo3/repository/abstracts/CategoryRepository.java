@@ -8,6 +8,9 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
     //List<Category> findByNameEquals(String name);
     boolean existsCategoryByName(String name);
-    Category checkIfCategoryById(int id);
+    boolean existsById(int id);
+
+
+
 
 }
