@@ -12,5 +12,4 @@ import lombok.Setter;
 @Getter
 public class AddCustomerRequest {
     private int customerNumber;
-    private Cart cart;
 }

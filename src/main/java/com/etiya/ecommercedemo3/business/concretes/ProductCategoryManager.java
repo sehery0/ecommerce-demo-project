@@ -5,6 +5,7 @@ import com.etiya.ecommercedemo3.business.abstracts.ProductCategoryService;
 import com.etiya.ecommercedemo3.business.abstracts.ProductService;
 import com.etiya.ecommercedemo3.business.dtos.request.productCategory.AddProductCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProductCategoryResponse;
+import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
 import com.etiya.ecommercedemo3.entities.concretes.Category;
 import com.etiya.ecommercedemo3.entities.concretes.Product;
 import com.etiya.ecommercedemo3.entities.concretes.ProductCategory;
@@ -21,19 +22,22 @@ public class ProductCategoryManager implements ProductCategoryService {
     private ProductCategoryRepository productCategoryRepository;
     private CategoryService categoryService;
     private ProductService productService;
-    private final CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
+    private ModelMapperService modelMapperService;
 
     @Override
     public AddProductCategoryResponse addProductCategory(AddProductCategoryRequest addProductCategoryRequest) {
-        ProductCategory productCategory = new ProductCategory();
+//        ProductCategory productCategory = new ProductCategory();
         checkIfCategoryExists(addProductCategoryRequest.getCategoryId());
-        Category category = categoryService.getById(addProductCategoryRequest.getCategoryId());
-        productCategory.setCategory(category);
-        Product product = productService.getById(addProductCategoryRequest.getProductId());
-        productCategory.setProduct(product);
+//        Category category = categoryService.getById(addProductCategoryRequest.getCategoryId());
+//        productCategory.setCategory(category);
+//        Product product = productService.getById(addProductCategoryRequest.getProductId());
+//        productCategory.setProduct(product);
+        ProductCategory productCategory=modelMapperService.getMapperRequest().map(addProductCategoryRequest,ProductCategory.class);
         ProductCategory savedProductCategory = productCategoryRepository.save(productCategory);
 
-        AddProductCategoryResponse response = new AddProductCategoryResponse(savedProductCategory.getId(),savedProductCategory.getCategory().getId(), savedProductCategory.getProduct().getId());
+//        AddProductCategoryResponse response = new AddProductCategoryResponse(savedProductCategory.getId(),savedProductCategory.getCategory().getId(), savedProductCategory.getProduct().getId());
+        AddProductCategoryResponse response=modelMapperService.getMapperResponse().map(savedProductCategory,AddProductCategoryResponse.class);
         return response;
     }
 

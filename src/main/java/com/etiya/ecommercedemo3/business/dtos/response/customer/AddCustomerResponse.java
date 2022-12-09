@@ -13,5 +13,5 @@ import lombok.Setter;
 public class AddCustomerResponse {
     private  int id;
     private int customerNumber;
-    private Cart cart;
+
 }

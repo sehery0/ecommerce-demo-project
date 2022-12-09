@@ -20,7 +20,4 @@ public class Customer {
     @Column(name = "customer_no")
     private int customerNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
 }

@@ -1,24 +1,24 @@
 package com.etiya.ecommercedemo3.api.controllers;
 
 import com.etiya.ecommercedemo3.business.abstracts.CustomerService;
-import com.etiya.ecommercedemo3.business.dtos.request.customer.AddCustomerRequest;
-import com.etiya.ecommercedemo3.business.dtos.response.customer.AddCustomerResponse;
+import com.etiya.ecommercedemo3.entities.concretes.Customer;
+import com.etiya.ecommercedemo3.entities.concretes.Product;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/customers")
 @AllArgsConstructor
 public class CustomersController {
     private CustomerService customerService;
-    @PostMapping("/add")
-    public ResponseEntity<AddCustomerResponse> addCustomer(@RequestBody AddCustomerRequest addCustomerRequest)
-    {
-        return new ResponseEntity<AddCustomerResponse>(customerService.addCustomer(addCustomerRequest), HttpStatus.CREATED);
+    @GetMapping("/getById")
+    public Customer getById(@RequestParam("id") int id){
+        return customerService.getById(id);
+    }
+    @GetMapping("/getAll")
+    public List<Customer> getAll(){
+        return customerService.getAll();
     }
 }

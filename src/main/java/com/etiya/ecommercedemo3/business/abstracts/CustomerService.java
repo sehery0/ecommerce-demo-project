@@ -5,7 +5,9 @@ import com.etiya.ecommercedemo3.business.dtos.response.customer.AddCustomerRespo
 import com.etiya.ecommercedemo3.entities.concretes.Customer;
 import com.etiya.ecommercedemo3.entities.concretes.Product;
 
+import java.util.List;
+
 public interface CustomerService {
-    AddCustomerResponse addCustomer(AddCustomerRequest addCustomerRequest);
     Customer getById(int id);
+    List<Customer> getAll();
 }

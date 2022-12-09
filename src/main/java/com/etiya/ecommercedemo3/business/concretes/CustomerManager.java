@@ -8,23 +8,20 @@ import com.etiya.ecommercedemo3.repository.abstracts.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CustomerManager implements CustomerService {
     CustomerRepository customerRepository;
 
     @Override
-    public AddCustomerResponse addCustomer(AddCustomerRequest addCustomerRequest) {
-        Customer customer =new Customer();
-        customer.setCustomerNumber(addCustomerRequest.getCustomerNumber());
-        customer.setCart(addCustomerRequest.getCart());
-        Customer savedCustomer=customerRepository.save(customer);
-        AddCustomerResponse response=new AddCustomerResponse(savedCustomer.getId(),savedCustomer.getCustomerNumber(),savedCustomer.getCart());
-        return  response;
+    public Customer getById(int id) {
+        return customerRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public Customer getById(int id) {
-        return customerRepository.findById(id).orElseThrow();
+    public List<Customer> getAll() {
+        return customerRepository.findAll();
     }
 }
