@@ -3,6 +3,7 @@ package com.etiya.ecommercedemo3.business.concretes;
 import com.etiya.ecommercedemo3.business.abstracts.CategoryService;
 import com.etiya.ecommercedemo3.business.abstracts.ProductCategoryService;
 import com.etiya.ecommercedemo3.business.abstracts.ProductService;
+import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.productCategory.AddProductCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProductCategoryResponse;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
@@ -44,7 +45,7 @@ public class ProductCategoryManager implements ProductCategoryService {
     private void checkIfCategoryExists(int id){
         boolean isExists = categoryRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException("Bu id'ye sahip bir kategori mevcut değil!");
+            throw new RuntimeException(Messages.Category.CategoryNotExistWithId);
         }
     }
 

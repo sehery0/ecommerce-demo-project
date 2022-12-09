@@ -1,6 +1,7 @@
 package com.etiya.ecommercedemo3.api.controllers;
 
 import com.etiya.ecommercedemo3.business.abstracts.ProductCategoryService;
+import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.productCategory.AddProductCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProductCategoryResponse;
 import com.etiya.ecommercedemo3.entities.concretes.ProductCategory;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/productcategories")
+@RequestMapping(Paths.apiPrefix + "productcategories")
 @AllArgsConstructor
 public class ProductCategoriesController {
     private ProductCategoryService productCategoryService;

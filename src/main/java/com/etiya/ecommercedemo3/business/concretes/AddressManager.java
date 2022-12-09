@@ -1,6 +1,7 @@
 package com.etiya.ecommercedemo3.business.concretes;
 
 import com.etiya.ecommercedemo3.business.abstracts.*;
+import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.address.AddAddressRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.address.AddAddressResponse;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
@@ -74,28 +75,28 @@ public class AddressManager implements AddressService {
     private void checkIfCityExists(int id){
         boolean isExists = cityRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException("Bu id'ye sahip city mevcut değil!");
+            throw new RuntimeException(Messages.City.CityNotExistWithId);
         }
     }
 
     private void checkIfCountryExists(int id){
         boolean isExists = countryRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException("Bu id'ye sahip country mevcut değil!");
+            throw new RuntimeException(Messages.Country.CountryNotExistWithId);
         }
     }
 
     private void checkIfStreetExists(int id){
         boolean isExists = streetRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException("Bu id'ye sahip street mevcut değil!");
+            throw new RuntimeException(Messages.Street.StreetNotExistWithId);
         }
     }
 
     private void checkIfCustomerExists(int id){
         boolean isExists = customerRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException("Bu id'ye sahip customer mevcut değil!");
+            throw new RuntimeException(Messages.Customer.CustomerNotExistWithId);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.etiya.ecommercedemo3.api.controllers;
 
 import com.etiya.ecommercedemo3.business.abstracts.CartService;
+import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.cart.AddCartRequest;
 import com.etiya.ecommercedemo3.business.dtos.request.country.AddCountryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.cart.AddCartResponse;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/carts")
+@RequestMapping(Paths.apiPrefix + "carts")
 @AllArgsConstructor
 public class CartsController {
     private CartService cartService;
