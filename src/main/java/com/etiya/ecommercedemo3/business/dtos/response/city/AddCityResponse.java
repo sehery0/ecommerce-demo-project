@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Positive;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -12,4 +14,5 @@ import lombok.Setter;
 public class AddCityResponse {
     private int id;
     private String name;
+    private int countryId;
 }

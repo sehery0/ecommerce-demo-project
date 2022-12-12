@@ -17,9 +17,5 @@ public class AddAddressRequest {
     @Positive
     private int customerId;
     @Positive
-    private int cityId;
-    @Positive
-    private int countryId;
-    @Positive
     private int streetId;
 }

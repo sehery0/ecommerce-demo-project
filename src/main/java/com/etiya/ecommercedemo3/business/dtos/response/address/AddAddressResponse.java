@@ -18,7 +18,5 @@ public class AddAddressResponse {
     private String title;
     private String description;
     private int customerId;
-    private int cityId;
-    private int countryId;
     private int streetId;
 }

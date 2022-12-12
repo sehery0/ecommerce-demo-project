@@ -5,10 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Positive;
+
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddStreetRequest {
     private String name;
+    private int cityId;
 }

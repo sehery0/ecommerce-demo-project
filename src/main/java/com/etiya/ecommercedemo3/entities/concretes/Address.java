@@ -28,14 +28,6 @@ public class Address {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
-
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;
-
-    @ManyToOne
     @JoinColumn(name = "street_id")
     private Street street;
 }

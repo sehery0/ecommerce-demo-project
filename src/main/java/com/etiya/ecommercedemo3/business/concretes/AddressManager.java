@@ -16,13 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AddressManager implements AddressService {
     private AddressRepository addressRepository;
-    private CityService cityService;
-    private CityRepository cityRepository;
-    private CountryService countryService;
-    private CountryRepository countryRepository;
-    private StreetService streetService;
     private StreetRepository streetRepository;
-    private CustomerService customerService;
     private CustomerRepository customerRepository;
     private ModelMapperService modelMapperService;
 
@@ -52,10 +46,10 @@ public class AddressManager implements AddressService {
 //        Address address = new Address();
 //        address.setTitle(addAddressRequest.getTitle());
 //        address.setDescription(addAddressRequest.getDescription());
-        checkIfCityExists(addAddressRequest.getCityId());
+//        checkIfCityExists(addAddressRequest.getCityId());
 //        City city = cityService.getById(addAddressRequest.getCityId());
 //        address.setCity(city);
-        checkIfCountryExists(addAddressRequest.getCountryId());
+//        checkIfCountryExists(addAddressRequest.getCountryId());
 //        Country country = countryService.getById(addAddressRequest.getCountryId());
 //        address.setCountry(country);
         checkIfStreetExists(addAddressRequest.getStreetId());
@@ -63,27 +57,13 @@ public class AddressManager implements AddressService {
 //        address.setStreet(street);
         checkIfCustomerExists(addAddressRequest.getCustomerId());
         Address address= modelMapperService.getMapperRequest().map(addAddressRequest,Address.class);
-        Customer customer = customerService.getById(addAddressRequest.getCustomerId());
-        address.setCustomer(customer);
+//        Customer customer = customerService.getById(addAddressRequest.getCustomerId());
+//        address.setCustomer(customer);
 
         Address savedAddress = addressRepository.save(address);
 //        AddAddressResponse response = new AddAddressResponse(savedAddress.getId(), savedAddress.getTitle(), savedAddress.getDescription(), savedAddress.getCity().getId(),savedAddress.getCountry().getId(),savedAddress.getStreet().getId(),savedAddress.getCustomer().getId());
         AddAddressResponse response= modelMapperService.getMapperResponse().map(savedAddress,AddAddressResponse.class);
         return response;
-    }
-
-    private void checkIfCityExists(int id){
-        boolean isExists = cityRepository.existsById(id);
-        if(!isExists) {
-            throw new RuntimeException(Messages.City.CityNotExistWithId);
-        }
-    }
-
-    private void checkIfCountryExists(int id){
-        boolean isExists = countryRepository.existsById(id);
-        if(!isExists) {
-            throw new RuntimeException(Messages.Country.CountryNotExistWithId);
-        }
     }
 
     private void checkIfStreetExists(int id){
@@ -99,6 +79,20 @@ public class AddressManager implements AddressService {
             throw new RuntimeException(Messages.Customer.CustomerNotExistWithId);
         }
     }
+
+    //    private void checkIfCityExists(int id){
+//        boolean isExists = cityRepository.existsById(id);
+//        if(!isExists) {
+//            throw new RuntimeException(Messages.City.CityNotExistWithId);
+//        }
+//    }
+
+//    private void checkIfCountryExists(int id){
+//        boolean isExists = countryRepository.existsById(id);
+//        if(!isExists) {
+//            throw new RuntimeException(Messages.Country.CountryNotExistWithId);
+//        }
+//    }
 
 
 }

@@ -1,4 +1,5 @@
 package com.etiya.ecommercedemo3.entities.concretes;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,9 @@ public class Street {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    @JsonIgnoreProperties
+    private City city;
 }
