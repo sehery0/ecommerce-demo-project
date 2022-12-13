@@ -5,6 +5,8 @@ import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.address.AddAddressRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.address.AddAddressResponse;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
+import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
 import com.etiya.ecommercedemo3.entities.concretes.*;
 import com.etiya.ecommercedemo3.repository.abstracts.*;
 import lombok.AllArgsConstructor;
@@ -22,13 +24,15 @@ public class AddressManager implements AddressService {
 
 
     @Override
-    public List<Address> getAll() {
-        return addressRepository.findAll();
+    public DataResult<List<Address>> getAll() {
+        List<Address> response = addressRepository.findAll();
+        return new SuccessDataResult<List<Address>>(response,Messages.Address.addressListAllSuccessMessage);
     }
 
     @Override
-    public Address getById(int id) {
-        return addressRepository.findById(id).orElseThrow();
+    public DataResult<Address> getById(int id) {
+        Address response = addressRepository.findById(id).orElseThrow();
+        return new SuccessDataResult<Address>(response,Messages.Address.addressGetByIdSuccessMessage);
     }
 
     @Override
@@ -42,7 +46,7 @@ public class AddressManager implements AddressService {
     }
 
     @Override
-    public AddAddressResponse addAddress(AddAddressRequest addAddressRequest) {
+    public DataResult<AddAddressResponse> addAddress(AddAddressRequest addAddressRequest) {
 //        Address address = new Address();
 //        address.setTitle(addAddressRequest.getTitle());
 //        address.setDescription(addAddressRequest.getDescription());
@@ -63,7 +67,7 @@ public class AddressManager implements AddressService {
         Address savedAddress = addressRepository.save(address);
 //        AddAddressResponse response = new AddAddressResponse(savedAddress.getId(), savedAddress.getTitle(), savedAddress.getDescription(), savedAddress.getCity().getId(),savedAddress.getCountry().getId(),savedAddress.getStreet().getId(),savedAddress.getCustomer().getId());
         AddAddressResponse response= modelMapperService.getMapperResponse().map(savedAddress,AddAddressResponse.class);
-        return response;
+        return new SuccessDataResult<AddAddressResponse>(response,Messages.Address.addressAddingSuccessMessage);
     }
 
     private void checkIfStreetExists(int id){

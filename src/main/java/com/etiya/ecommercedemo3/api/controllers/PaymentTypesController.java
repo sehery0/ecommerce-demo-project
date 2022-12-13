@@ -4,6 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.PaymentTypeService;
 import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.paymentType.AddPaymentTypeRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.paymentType.AddPaymentTypeResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.entities.concretes.PaymentType;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,28 +20,28 @@ public class PaymentTypesController {
     PaymentTypeService paymentTypeService;
 
     @GetMapping("/getAll")
-    public List<PaymentType> getAll(){
+    public DataResult<List<PaymentType>> getAll(){
         return paymentTypeService.getAll();
     }
 
     @GetMapping("{id}")
-    public PaymentType getById(@PathVariable int id){
+    public DataResult<PaymentType> getById(@PathVariable int id){
         return paymentTypeService.getById(id);
     }
 
     @GetMapping("/name")
-    public PaymentType getByName(@RequestParam("name") String name){
+    public DataResult<PaymentType> getByName(@RequestParam("name") String name){
         return paymentTypeService.getByName(name);
     }
 
     @GetMapping("/description")
-    public PaymentType getByDescription(@RequestParam("description") String description){
+    public DataResult<PaymentType> getByDescription(@RequestParam("description") String description){
         return paymentTypeService.getByDescription(description);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<AddPaymentTypeResponse> addPaymentType(@RequestBody AddPaymentTypeRequest addPaymentTypeRequest)
+    public ResponseEntity<DataResult<AddPaymentTypeResponse>> addPaymentType(@RequestBody AddPaymentTypeRequest addPaymentTypeRequest)
     {
-        return  new ResponseEntity<AddPaymentTypeResponse>(paymentTypeService.addPaymentType(addPaymentTypeRequest), HttpStatus.CREATED);
+        return  new ResponseEntity<>(paymentTypeService.addPaymentType(addPaymentTypeRequest), HttpStatus.CREATED);
     }
 }

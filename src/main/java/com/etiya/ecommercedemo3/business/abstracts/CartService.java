@@ -4,7 +4,8 @@ import com.etiya.ecommercedemo3.business.dtos.request.cart.AddCartRequest;
 import com.etiya.ecommercedemo3.business.dtos.request.country.AddCountryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.cart.AddCartResponse;
 import com.etiya.ecommercedemo3.business.dtos.response.country.AddCountryResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 
 public interface CartService {
-    AddCartResponse addCart(AddCartRequest addCartRequest);
+    DataResult<AddCartResponse> addCart(AddCartRequest addCartRequest);
 }

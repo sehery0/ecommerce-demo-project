@@ -4,6 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.CountryService;
 import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.country.AddCountryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.country.AddCountryResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class CountriesController {
     private CountryService countryService;
 
     @PostMapping("/add")
-    public ResponseEntity<AddCountryResponse> addCountry(@RequestBody AddCountryRequest addCountryRequest)
+    public ResponseEntity<DataResult<AddCountryResponse>> addCountry(@RequestBody AddCountryRequest addCountryRequest)
     {
-        return new ResponseEntity<AddCountryResponse>(countryService.addCountry(addCountryRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(countryService.addCountry(addCountryRequest), HttpStatus.CREATED);
     }
 }

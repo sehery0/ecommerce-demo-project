@@ -4,8 +4,9 @@ import com.etiya.ecommercedemo3.business.dtos.request.paymentType.AddPaymentType
 import com.etiya.ecommercedemo3.business.dtos.request.productCategory.AddProductCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.paymentType.AddPaymentTypeResponse;
 import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProductCategoryResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.entities.concretes.ProductCategory;
 
 public interface ProductCategoryService {
-    AddProductCategoryResponse addProductCategory(AddProductCategoryRequest addProductCategoryRequest);
+    DataResult<AddProductCategoryResponse> addProductCategory(AddProductCategoryRequest addProductCategoryRequest);
 }

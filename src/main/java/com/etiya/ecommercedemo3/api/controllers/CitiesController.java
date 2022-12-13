@@ -4,6 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.CityService;
 import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.city.AddCityRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.city.AddCityResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CitiesController {
     CityService cityService;
     @PostMapping("/add")
-    public ResponseEntity<AddCityResponse> addCity(@RequestBody AddCityRequest addCityRequest)
-    {
-        return  new ResponseEntity<>(cityService.addCity(addCityRequest), HttpStatus.CREATED);
+    public ResponseEntity<DataResult<AddCityResponse>> addCity(@RequestBody AddCityRequest addCityRequest) {
+        return new ResponseEntity<>(cityService.addCity(addCityRequest), HttpStatus.CREATED);
     }
 }

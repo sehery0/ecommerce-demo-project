@@ -6,6 +6,7 @@ import com.etiya.ecommercedemo3.business.dtos.request.cart.AddCartRequest;
 import com.etiya.ecommercedemo3.business.dtos.request.country.AddCountryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.cart.AddCartResponse;
 import com.etiya.ecommercedemo3.business.dtos.response.country.AddCountryResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class CartsController {
     private CartService cartService;
 
     @PostMapping("/add")
-    public ResponseEntity<AddCartResponse> addCart(@RequestBody AddCartRequest addCartRequest)
+    public ResponseEntity<DataResult<AddCartResponse>> addCart(@RequestBody AddCartRequest addCartRequest)
     {
-        return new ResponseEntity<AddCartResponse>(cartService.addCart(addCartRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(cartService.addCart(addCartRequest), HttpStatus.CREATED);
     }
 }

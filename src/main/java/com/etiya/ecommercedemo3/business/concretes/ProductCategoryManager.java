@@ -7,15 +7,13 @@ import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.productCategory.AddProductCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProductCategoryResponse;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
-import com.etiya.ecommercedemo3.entities.concretes.Category;
-import com.etiya.ecommercedemo3.entities.concretes.Product;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
+import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
 import com.etiya.ecommercedemo3.entities.concretes.ProductCategory;
 import com.etiya.ecommercedemo3.repository.abstracts.CategoryRepository;
 import com.etiya.ecommercedemo3.repository.abstracts.ProductCategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +25,7 @@ public class ProductCategoryManager implements ProductCategoryService {
     private ModelMapperService modelMapperService;
 
     @Override
-    public AddProductCategoryResponse addProductCategory(AddProductCategoryRequest addProductCategoryRequest) {
+    public DataResult<AddProductCategoryResponse> addProductCategory(AddProductCategoryRequest addProductCategoryRequest) {
 //        ProductCategory productCategory = new ProductCategory();
         checkIfCategoryExists(addProductCategoryRequest.getCategoryId());
 //        Category category = categoryService.getById(addProductCategoryRequest.getCategoryId());
@@ -39,7 +37,7 @@ public class ProductCategoryManager implements ProductCategoryService {
 
 //        AddProductCategoryResponse response = new AddProductCategoryResponse(savedProductCategory.getId(),savedProductCategory.getCategory().getId(), savedProductCategory.getProduct().getId());
         AddProductCategoryResponse response=modelMapperService.getMapperResponse().map(savedProductCategory,AddProductCategoryResponse.class);
-        return response;
+        return new SuccessDataResult<AddProductCategoryResponse>(response, Messages.ProductCategory.productCategoriesAddSuccesMessage);
     }
 
     private void checkIfCategoryExists(int id){

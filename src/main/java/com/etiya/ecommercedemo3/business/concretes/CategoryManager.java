@@ -5,10 +5,11 @@ import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.category.AddCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.category.AddCategoryResponse;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
+import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
 import com.etiya.ecommercedemo3.entities.concretes.Category;
 import com.etiya.ecommercedemo3.repository.abstracts.CategoryRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,17 +20,19 @@ public class CategoryManager implements CategoryService {
     private CategoryRepository categoryRepository;
     private ModelMapperService modelMapperService;
     @Override
-    public List<Category> getAll() {
-        return categoryRepository.findAll();
+    public DataResult<List<Category>> getAll() {
+        List<Category> response = categoryRepository.findAll();
+        return new SuccessDataResult<List<Category>>(response, Messages.Category.CategoryGetAllSuccessMessage);
     }
 
     @Override
-    public Category getById(int id) {
-        return categoryRepository.findById(id).orElseThrow();
+    public DataResult<Category> getById(int id) {
+        Category response = categoryRepository.findById(id).orElseThrow();
+        return new SuccessDataResult<Category>(response,Messages.Category.CategoryGetByIdSuccessMessage);
     }
 
     @Override
-    public AddCategoryResponse addCategory(AddCategoryRequest addCategoryRequest) {
+    public DataResult<AddCategoryResponse> addCategory(AddCategoryRequest addCategoryRequest) {
 //        Category category = new Category();
 //        category.setName(addCategoryRequest.getName());
 //        categoryCanNotExistWithSameName(addCategoryRequest.getName());
@@ -38,7 +41,7 @@ public class CategoryManager implements CategoryService {
 //        AddCategoryResponse response =
 //                new AddCategoryResponse(savedCategory.getId(), savedCategory.getName());
         AddCategoryResponse response=modelMapperService.getMapperResponse().map(savedCategory,AddCategoryResponse.class);
-        return response;
+        return new SuccessDataResult<AddCategoryResponse>(response,Messages.Category.CategoryAddSuccessMessage);
     }
 
     private void categoryCanNotExistWithSameName(String name){

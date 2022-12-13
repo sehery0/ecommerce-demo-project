@@ -4,6 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.ProductCategoryService;
 import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.productCategory.AddProductCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.productCategory.AddProductCategoryResponse;
+import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.entities.concretes.ProductCategory;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class ProductCategoriesController {
     private ProductCategoryService productCategoryService;
 
     @PostMapping("/add")
-    public ResponseEntity<AddProductCategoryResponse > addProductCategory(@RequestBody @Valid AddProductCategoryRequest addProductCategoryRequest) {
-        return new ResponseEntity<AddProductCategoryResponse >(productCategoryService.addProductCategory(addProductCategoryRequest), HttpStatus.CREATED);
+    public ResponseEntity<DataResult<AddProductCategoryResponse>> addProductCategory(@RequestBody @Valid AddProductCategoryRequest addProductCategoryRequest) {
+        return new ResponseEntity<>(productCategoryService.addProductCategory(addProductCategoryRequest), HttpStatus.CREATED);
     }
 }
