@@ -4,6 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.CategoryService;
 import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.category.AddCategoryRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.category.AddCategoryResponse;
+import com.etiya.ecommercedemo3.core.util.exceptions.BusinessException;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
 import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
@@ -48,7 +49,7 @@ public class CategoryManager implements CategoryService {
         // Exception fırlatma
         boolean isExists = categoryRepository.existsCategoryByName(name);
         if(!isExists)
-            throw new RuntimeException(Messages.Category.CategoryExistWithSameName);
+            throw new BusinessException(Messages.Category.CategoryExistWithSameName);
     }
 
 }

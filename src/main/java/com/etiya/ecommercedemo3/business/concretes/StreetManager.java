@@ -5,10 +5,12 @@ import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.street.AddStreetRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.street.AddStreetResponse;
 import com.etiya.ecommercedemo3.business.dtos.response.street.GetAllStreetsResponse;
+import com.etiya.ecommercedemo3.core.util.exceptions.BusinessException;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
 import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
 import com.etiya.ecommercedemo3.entities.concretes.Street;
+import com.etiya.ecommercedemo3.repository.abstracts.CityRepository;
 import com.etiya.ecommercedemo3.repository.abstracts.StreetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import java.util.List;
 public class StreetManager implements StreetService {
     private StreetRepository streetRepository;
     private ModelMapperService modelMapperService;
+    private CityRepository cityRepository;
 
     @Override
     public DataResult<Street> getById(int id) {
@@ -31,6 +34,7 @@ public class StreetManager implements StreetService {
     public DataResult<AddStreetResponse> addStreet(AddStreetRequest addStreetRequest) {
 //        Street street = new Street();
 //        street.setName(addStreetRequest.getName());
+        checkIfCityExists(addStreetRequest.getCityId());
         Street street=modelMapperService.getMapperRequest().map(addStreetRequest,Street.class);
         Street savedStreet = streetRepository.save(street);
 //        AddStreetResponse response = new AddStreetResponse(savedStreet.getId(),
@@ -43,5 +47,12 @@ public class StreetManager implements StreetService {
     public DataResult<List<GetAllStreetsResponse>> getAllDto() {
         List<GetAllStreetsResponse> response= streetRepository.getAllDto();
         return new SuccessDataResult<List<GetAllStreetsResponse>>(response,"Sokak listelendi");
+    }
+
+    private void checkIfCityExists(int id){
+        boolean isExists = cityRepository.existsById(id);
+        if(!isExists) {
+            throw new BusinessException(Messages.City.CityNotExistWithId);
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.*;
 import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.address.AddAddressRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.address.AddAddressResponse;
+import com.etiya.ecommercedemo3.core.util.exceptions.BusinessException;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
 import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
@@ -73,30 +74,15 @@ public class AddressManager implements AddressService {
     private void checkIfStreetExists(int id){
         boolean isExists = streetRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException(Messages.Street.StreetNotExistWithId);
+            throw new BusinessException(Messages.Street.StreetNotExistWithId);
         }
     }
 
     private void checkIfCustomerExists(int id){
         boolean isExists = customerRepository.existsById(id);
         if(!isExists) {
-            throw new RuntimeException(Messages.Customer.CustomerNotExistWithId);
+            throw new BusinessException(Messages.Customer.CustomerNotExistWithId);
         }
     }
-
-    //    private void checkIfCityExists(int id){
-//        boolean isExists = cityRepository.existsById(id);
-//        if(!isExists) {
-//            throw new RuntimeException(Messages.City.CityNotExistWithId);
-//        }
-//    }
-
-//    private void checkIfCountryExists(int id){
-//        boolean isExists = countryRepository.existsById(id);
-//        if(!isExists) {
-//            throw new RuntimeException(Messages.Country.CountryNotExistWithId);
-//        }
-//    }
-
 
 }
