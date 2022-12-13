@@ -8,7 +8,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetProductsResponse {
+public class GetProductResponse {
     private String name;
     private int stock;
     private double unitPrice;

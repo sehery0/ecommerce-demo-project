@@ -1,10 +1,9 @@
 package com.etiya.ecommercedemo3.entities.concretes;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "orders")
@@ -12,11 +11,17 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Order{
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "order_number")
+    private String orderNumber;
+
+    @Column(name = "order_date")
+    private LocalDate orderDate;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -25,4 +30,11 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @OneToOne(mappedBy = "order")
+    private Invoice invoice;
 }

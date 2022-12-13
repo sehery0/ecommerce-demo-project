@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.Map;
 @SpringBootApplication
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.etiya.ecommercedemo3.repository.abstracts"})
+@RestControllerAdvice
 public class EcommerceDemo3Application {
 
 	public static void main(String[] args) {

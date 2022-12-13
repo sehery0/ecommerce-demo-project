@@ -4,7 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.ProductService;
 import com.etiya.ecommercedemo3.business.constants.Paths;
 import com.etiya.ecommercedemo3.business.dtos.request.product.AddProductRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.product.AddProductResponse;
-import com.etiya.ecommercedemo3.business.dtos.response.product.GetProductsResponse;
+import com.etiya.ecommercedemo3.business.dtos.response.product.GetProductResponse;
 import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class ProductsController {
     }
 
     @GetMapping("getProductsByCategory")
-    public DataResult<List<GetProductsResponse>> getProductsByCategoryId(int identity){
+    public DataResult<List<GetProductResponse>> getProductsByCategoryId(int identity){
         return productService.getProductsByCategoryId(identity);
     }
 

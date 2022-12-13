@@ -74,6 +74,13 @@ public class Messages {
         public static final String paymentTypeAddSuccessMessage = "Ödeme Yöntemi Eklendi.";
     }
 
+    public static class Order{
+        public  static  final  String orderAddSuccessMessage="Sipariş eklendi";
+    }
+
+    public static class Invoice {
+        public static final String invoiceAddSuccessMessage = "Fatura Eklendi";
+    }
 
 
 

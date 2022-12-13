@@ -4,7 +4,7 @@ import com.etiya.ecommercedemo3.business.abstracts.ProductService;
 import com.etiya.ecommercedemo3.business.constants.Messages;
 import com.etiya.ecommercedemo3.business.dtos.request.product.AddProductRequest;
 import com.etiya.ecommercedemo3.business.dtos.response.product.AddProductResponse;
-import com.etiya.ecommercedemo3.business.dtos.response.product.GetProductsResponse;
+import com.etiya.ecommercedemo3.business.dtos.response.product.GetProductResponse;
 import com.etiya.ecommercedemo3.core.util.mapping.ModelMapperService;
 import com.etiya.ecommercedemo3.core.util.results.DataResult;
 import com.etiya.ecommercedemo3.core.util.results.SuccessDataResult;
@@ -58,9 +58,9 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public DataResult<List<GetProductsResponse>> getProductsByCategoryId(int identity) {
-        List<GetProductsResponse> response = productRepository.getProductByCategoryId(identity);
-        return new SuccessDataResult<List<GetProductsResponse>>(response, "Kategori id getirildi");
+    public DataResult<List<GetProductResponse>> getProductsByCategoryId(int identity) {
+        List<GetProductResponse> response = productRepository.getProductByCategoryId(identity);
+        return new SuccessDataResult<List<GetProductResponse>>(response, "Kategori id getirildi");
     }
 
 }
