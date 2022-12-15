@@ -14,5 +14,6 @@ import java.time.LocalDate;
 public class AddInvoiceRequest {
     private String invoiceNumber;
     private LocalDate invoiceDate;
+    private int orderId;
 
 }

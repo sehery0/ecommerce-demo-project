@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class AddProductResponse {
-    private  int productId;
+    private  int id;
     private String name;
-    private double unit_price;
+    private double unitPrice;
     private int stock;
+    private int orderId;
 }

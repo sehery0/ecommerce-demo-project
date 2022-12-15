@@ -34,4 +34,8 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @JsonBackReference
     List<ProductCategory> productCategories;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Order order;
 }

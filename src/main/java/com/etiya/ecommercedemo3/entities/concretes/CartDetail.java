@@ -14,19 +14,16 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(CartDetailId.class)
-public class CartDetail implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class CartDetail {
     @Id
-    @Column(name = "product_id",insertable = false, updatable = false)
-    private int productId;
+    @Column(name = "id")
+    private int id;
+
     @ManyToOne
-    @JoinColumn(name = "product_id",insertable = false, updatable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
-    @Id
-    @Column(name="cart_id",insertable = false, updatable = false)
-    private int cartId;
+
     @ManyToOne
-    @JoinColumn(name = "cart_id",insertable = false, updatable = false)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 }

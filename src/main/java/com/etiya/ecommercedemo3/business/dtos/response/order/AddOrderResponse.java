@@ -11,10 +11,10 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class AddOrderResponse {
-    private int Id;
+    private int id;
     private int paymentId;
-    private int customerId;
     private int addressId;
     private LocalDate orderDate;
     private String orderNumber;
+    private int cartId;
 }

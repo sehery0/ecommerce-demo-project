@@ -12,4 +12,5 @@ import lombok.Setter;
 public class AddCartResponse {
     private  int id;
     private double totalPrice;
+    private int customerId;
 }

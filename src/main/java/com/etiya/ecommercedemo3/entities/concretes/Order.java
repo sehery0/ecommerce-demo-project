@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -24,10 +25,6 @@ public class Order{
     private LocalDate orderDate;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    @ManyToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;
 
@@ -35,6 +32,10 @@ public class Order{
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToOne(mappedBy = "order")
-    private Invoice invoice;
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+//    @OneToOne(mappedBy = "order")
+//    private Invoice invoice;
 }

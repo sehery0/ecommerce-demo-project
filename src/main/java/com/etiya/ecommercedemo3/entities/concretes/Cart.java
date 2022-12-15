@@ -20,4 +20,8 @@ public class Cart {
     private int id;
     @Column(name = "total_price")
     private double totalPrice;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 }

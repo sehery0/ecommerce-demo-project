@@ -11,5 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddCartRequest {
     private double totalPrice;
+    private int customerId;
 
 }

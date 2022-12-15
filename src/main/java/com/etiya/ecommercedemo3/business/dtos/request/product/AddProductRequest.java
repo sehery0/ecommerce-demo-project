@@ -19,4 +19,5 @@ public class AddProductRequest {
     private double unit_price;
     @Min(value = 0)
     private int stock;
+    private int orderId;
 }

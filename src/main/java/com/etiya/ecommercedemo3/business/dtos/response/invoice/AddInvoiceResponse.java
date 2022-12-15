@@ -16,4 +16,5 @@ public class AddInvoiceResponse {
     private int Id;
     private String invoiceNumber;
     private LocalDate invoiceDate;
+    private int orderId;
 }

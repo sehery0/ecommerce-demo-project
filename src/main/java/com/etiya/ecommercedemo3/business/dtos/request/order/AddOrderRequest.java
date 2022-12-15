@@ -16,8 +16,8 @@ import java.time.LocalDate;
 @Setter
 public class AddOrderRequest {
     private int paymentId;
-    private int customerId;
     private int addressId;
     private LocalDate orderDate;
     private String orderNumber;
+    private int cartId;
 }
